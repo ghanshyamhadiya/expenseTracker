@@ -100,6 +100,11 @@
   font-weight: bold;
 }
 
+.login-wrapper{
+  position: relative;
+  top: 3vh;
+}
+
 #strength.medium {
   color: #ffa500;
   font-weight: bold;
@@ -277,7 +282,7 @@
 
   .signup-container-shadow {
       padding: 1rem;
-      margin: 0 1rem;
+/*       margin: 0 1rem; */
   }
 
   .input-group-float {
