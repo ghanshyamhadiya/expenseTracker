@@ -38,7 +38,7 @@ const dbUrl = process.env.MONGO_ATLAS_URL
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
-        secret: "expense_tracker",
+        secret: process.env.SECRET,
     },
     touchAfter: 24 * 3600,
 })
@@ -49,7 +49,7 @@ store.on("error", function (error) {
 
 const sessionOption = {
     store,
-    secret: "expense_tracker",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
