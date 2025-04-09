@@ -1,0 +1,94 @@
+<% title="Add Expense" %>
+<% layout("./layout/boilerplate") %>
+
+<link rel="stylesheet" href="/css/new.css">
+
+<div class="expense-container">
+    <div class="page-header">
+        <h1><i class="fas fa-receipt"></i> New Transaction</h1>
+        <p class="subtitle">Record your income or expense</p>
+    </div>
+    
+    <div class="card expense-form-card">
+        <form action="/expense/new" method="POST" class="expense-form" id="expenseForm">
+            <div class="form-group type-group">
+                <label for="type">
+                    <i class="fas fa-exchange-alt"></i> Transaction Type
+                </label>
+                <select id="type" name="type" required>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+            
+            <div class="form-group amount-group">
+                <label for="amount">
+                    <i class="fas fa-money-bill-wave"></i> Amount
+                </label>
+                <div class="input-with-icon">
+                    <span class="currency-symbol"></span>
+                    <input type="number" id="amount" name="amount" step="0.01" min="0" placeholder="0.00" required>
+                </div>
+            </div>
+            
+            <div class="form-group date-group">
+                <label for="date">
+                    <i class="fas fa-calendar-day"></i> Date
+                </label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            
+            <div class="form-group category-group">
+                <label for="category">
+                    <i class="fas fa-tag"></i> Category
+                </label>
+                <input type="text" id="category" name="category" placeholder="e.g., Food, Salary, Transportation" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary submit-btn">
+                <i class="fas fa-plus-circle"></i> Add Transaction
+            </button>
+        </form>
+    </div>
+    
+    <div class="back-link">
+        <a href="/expense" class="btn btn-outline">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-check-circle"></i> Confirm Transaction</h2>
+            </div>
+            <div class="modal-body" id="confirmDetails">
+                <div class="confirm-item">
+                    <span class="confirm-label">Type:</span>
+                    <span class="confirm-value" id="modalType"></span>
+                </div>
+                <div class="confirm-item">
+                    <span class="confirm-label">Amount:</span>
+                    <span class="confirm-value" id="modalAmount"></span>
+                </div>
+                <div class="confirm-item">
+                    <span class="confirm-label">Date:</span>
+                    <span class="confirm-value" id="modalDate"></span>
+                </div>
+                <div class="confirm-item">
+                    <span class="confirm-label">Category:</span>
+                    <span class="confirm-value" id="modalCategory"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="confirm-btn btn btn-primary" onclick="submitForm()">
+                    <i class="fas fa-check"></i> Confirm
+                </button>
+                <button class="cancel-btn btn btn-outline" onclick="hideConfirmModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

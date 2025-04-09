@@ -1,0 +1,28 @@
+<nav>
+    <div class="nav-container">
+        <a href="/expense" class="logo" style="z-index: 1001;">
+            <i class="fas fa-wallet"></i>
+            <span>ExpenseTracker</span>
+        </a>
+        <button class="hamburger" style="z-index: 1001;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links">
+            <a class="nav-a" href="/expense"><i class="fas fa-home"></i> Home</a>
+            <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+            <a class="nav-a" href="/savings"><i class="fas fa-piggy-bank"></i> Savings</a>
+            <a class="nav-a" href="/recurring"><i class="fas fa-sync-alt"></i> Recurring</a>
+            <a class="nav-a" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <button id="theme-toggle" class="theme-toggle nav-theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-sun"></i>
+            </button>
+            <% } else { %>
+            <a class="nav-a" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a class="nav-a" href="/signup"><i class="fas fa-user-plus"></i> Signup</a>
+            <% } %>
+        </div>
+    </div>
+</nav>
+<div class="nav-overlay"></div>

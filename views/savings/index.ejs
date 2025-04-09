@@ -1,0 +1,174 @@
+<% layout("./layout/boilerplate") %>
+<link rel="stylesheet" href="./css/saving.css">
+
+<div class="dashboard-container main-savings">
+    <% if (typeof currentUser !=='undefined' && currentUser) { %>
+        <!-- Savings Goals Section -->
+        <section class="savings-section">
+            <div class="section-header">
+                <h2><i class="fas fa-piggy-bank"></i> Savings Goals</h2>
+                <a href="/savings/new" class="btn btn-primary add-goal-btn">
+                    <i class="fas fa-plus"></i> Add Goal
+                </a>
+            </div>
+            
+            <% if (savingsGoals && savingsGoals.length > 0) { %>
+                <div class="savings-goals-container">
+                    <% for (let goal of savingsGoals) { %>
+                        <div class="savings-goal-card <%= goal.isCompleted ? 'completed' : '' %>">
+                            <div class="goal-header">
+                                <h3 class="goal-title"><%= goal.title %></h3>
+                                <span class="goal-category"><%= goal.category %></span>
+                                <% if (goal.isCompleted) { %>
+                                    <span class="goal-completed-badge"><i class="fas fa-check-circle"></i> Completed</span>
+                                <% } %>
+                            </div>
+                            
+                            <div class="goal-progress-container">
+                                <div class="goal-progress" style="width: <%= goal.progressPercentage %>%;"></div>
+                            </div>
+                            
+                            <div class="goal-amounts">
+                                <span class="current-amount"><%= goal.currentAmount.toFixed(2) %></span>
+                                <span class="separator">/</span>
+                                <span class="target-amount"><%= goal.targetAmount.toFixed(2) %></span>
+                                <span class="progress-percentage"><%= goal.progressPercentage %>%</span>
+                            </div>
+                            
+                            <div class="goal-details">
+                                <div class="goal-deadline">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Deadline: <%= new Date(goal.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></span>
+                                    <% if (goal.daysRemaining > 0 && !goal.isCompleted) { %>
+                                        <span class="days-remaining">(<%= goal.daysRemaining %> days left)</span>
+                                    <% } %>
+                                </div>
+                                
+                                <% if (goal.description) { %>
+                                    <div class="goal-description">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span><%= goal.description %></span>
+                                    </div>
+                                <% } %>
+                            </div>
+                            
+                            <div class="goal-actions">
+                                <% if (!goal.isCompleted) { %>
+                                    <button class="btn btn-success contribute-btn" onclick="showContributeModal('<%= goal.id %>')">Add Contribution</button>
+                                <% } %>
+                                <div class="action-buttons">
+                                    <a href="/savings/edit/<%= goal.id %>" class="action-btn edit-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button class="action-btn delete-btn" onclick="showSavingsDeleteModal('<%= goal.id %>')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            <% } else { %>
+                <div class="empty-state">
+                    <i class="fas fa-piggy-bank empty-icon"></i>
+                    <h3>No Savings Goals Yet</h3>
+                    <p>Start by setting up your first savings goal</p>
+                    <a href="/savings/new" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Create Your First Goal
+                    </a>
+                </div>
+            <% } %>
+        </section>
+    <% } else { %>
+        <!-- Not logged in state -->
+        <div class="not-logged-in">
+            <div class="empty-state">
+                <i class="fas fa-user-lock empty-icon"></i>
+                <h2>Welcome to Expense Tracker</h2>
+                <p>Please log in to manage your finances</p>
+                <div class="auth-buttons">
+                    <a href="/user/login" class="btn btn-primary">Log In</a>
+                    <a href="/user/signup" class="btn btn-outline">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    <% } %>
+</div>
+
+<!-- Contribute Modal -->
+<div id="contributeModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-plus-circle"></i> Add Contribution</h2>
+            <button type="button" class="close-btn" onclick="closeContributeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="contributeForm" method="post">
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" min="0.01" step="0.01" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline cancel-btn" onclick="closeContributeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-success confirm-btn">Add Contribution</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="savingsDeleteModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-trash"></i> Confirm Deletion</h2>
+            <button type="button" class="close-btn" onclick="closeSavingsDeleteModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to delete this savings goal? This action cannot be undone.</p>
+        </div>
+        <div class="modal-footer">
+            <form id="savingsDeleteForm" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="button" class="btn btn-outline cancel-btn" onclick="closeSavingsDeleteModal()">Cancel</button>
+                <button type="submit" class="btn btn-danger confirm-btn">Yes, Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showContributeModal(goalId) {
+        document.getElementById('contributeForm').action = `/savings/${goalId}/contribute`;
+        const modal = document.getElementById('contributeModal');
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+    }
+    
+    function closeContributeModal() {
+        const modal = document.getElementById('contributeModal');
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    }
+    
+    function showSavingsDeleteModal(goalId) {
+        document.getElementById('savingsDeleteForm').action = `/savings/${goalId}?_method=DELETE`;
+        const modal = document.getElementById('savingsDeleteModal');
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+    }
+    
+    function closeSavingsDeleteModal() {
+        const modal = document.getElementById('savingsDeleteModal');
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
+    }
+</script>

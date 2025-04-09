@@ -1,0 +1,73 @@
+<% layout("./layout/boilerplate") %>
+<link rel="stylesheet" href="/css/updateSav.css">
+
+<div class="container">
+        <div class="form-header">
+            <h1><i class="fas fa-edit"></i> Edit Savings Goal</h1>
+        </div>
+    <div class="form-container">
+        
+        <form action="/savings/<%= savingsGoal._id %>?_method=PUT" method="POST" class="savings-form">
+            <div class="form-group">
+                <label for="title">Goal Title:</label>
+                <input type="text" id="title" name="title" required value="<%= savingsGoal.title %>">
+            </div>
+            
+            <div class="form-group">
+                <label for="targetAmount">Target Amount:</label>
+                <div class="input-with-icon">
+                    <input type="number" id="targetAmount" name="targetAmount" min="1" step="0.01" required value="<%= savingsGoal.targetAmount %>">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="currentAmount">Current Amount:</label>
+                <div class="input-with-icon">
+                    <input type="number" id="currentAmount" name="currentAmount" min="0" step="0.01" required value="<%= savingsGoal.currentAmount %>">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="deadline">Target Date:</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" id="deadline" name="deadline" required value="<%= savingsGoal.deadline.toISOString().split('T')[0] %>">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="Savings" <%= savingsGoal.category === 'Savings' ? 'selected' : '' %>>Savings</option>
+                    <option value="Investment" <%= savingsGoal.category === 'Investment' ? 'selected' : '' %>>Investment</option>
+                    <option value="Emergency Fund" <%= savingsGoal.category === 'Emergency Fund' ? 'selected' : '' %>>Emergency Fund</option>
+                    <option value="Vacation" <%= savingsGoal.category === 'Vacation' ? 'selected' : '' %>>Vacation</option>
+                    <option value="Education" <%= savingsGoal.category === 'Education' ? 'selected' : '' %>>Education</option>
+                    <option value="Home" <%= savingsGoal.category === 'Home' ? 'selected' : '' %>>Home</option>
+                    <option value="Vehicle" <%= savingsGoal.category === 'Vehicle' ? 'selected' : '' %>>Vehicle</option>
+                    <option value="Retirement" <%= savingsGoal.category === 'Retirement' ? 'selected' : '' %>>Retirement</option>
+                    <option value="Other" <%= savingsGoal.category === 'Other' ? 'selected' : '' %>>Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description (optional):</label>
+                <textarea id="description" name="description" rows="3"><%= savingsGoal.description %></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <a href="/savings" class="btn btn-outline cancel-btn">Cancel</a>
+                <button type="submit" class="btn btn-primary submit-btn">Update Goal</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deadlineInput = document.getElementById('deadline');
+        if (deadlineInput) {
+            deadlineInput.min = new Date().toISOString().split('T')[0]; // Set min date to today
+        }
+    });
+</script>

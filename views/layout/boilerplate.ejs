@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Modern CSS Framework -->
+    <link rel="stylesheet" href="/css/theme.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/flash.css">
+    <link rel="stylesheet" href="/css/all.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- App Styles -->
+    <title>
+        <%= typeof title !=='undefined' ? title : "Expense Tracker" %>
+    </title>
+</head>
+
+<body>
+    <%- include("../includes/nav.ejs") %>
+    <div class="main">
+        <div class="container animate-fadeIn">
+            <%- include("../includes/flash.ejs") %>
+            <%- body %>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <a href="/expense" class="footer-logo">
+                    <i class="fas fa-wallet"></i>
+                    <span>ExpenseTracker</span>
+                </a>
+                <p class="footer-about">Simplify your financial life with our powerful expense tracking tools. Manage budgets, track recurring expenses, and achieve your savings goals.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="/expense"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="/expense/new"><i class="fas fa-plus-circle"></i> Add Budget</a></li>
+                    <li><a href="/savings"><i class="fas fa-piggy-bank"></i> Savings</a></li>
+                    <li><a href="/recurring"><i class="fas fa-sync-alt"></i> Recurring</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© <%= new Date().getFullYear() %> Expense Tracker. All rights reserved.</p>
+                <p>Made with <span class="heart-icon">♥</span> for better financial management</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="/js/flash.js"></script>
+    <script src="/js/nav.js"></script>
+    <script src="/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="/js/script.js"></script>
+    <!-- Theme Toggle Script -->
+    <script src="/js/theme-toggle.js"></script>
+</body>
+
+</html>

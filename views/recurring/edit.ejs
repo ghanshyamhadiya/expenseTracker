@@ -1,0 +1,97 @@
+<% layout("./layout/boilerplate") %>
+<link rel="stylesheet" href="/css/updateRec.css">
+
+
+<div class="container">
+        <div class="form-header">
+            <h1><i class="fas fa-sync-alt"></i> 
+                <%= recurringTransaction && recurringTransaction._id ? "Edit Recurring Transaction" : "Create Recurring Transaction" %>
+            </h1>
+        </div>
+    <div class="form-container">
+
+        <form action="/recurring<%= recurringTransaction && recurringTransaction._id ? '/' + recurringTransaction._id + '?_method=PUT' : '' %>" method="POST" class="recurring-form">
+            <div class="form-group">
+                <label for="title">Transaction Title:</label>
+                <input type="text" id="title" name="title" value="<%= recurringTransaction.title || '' %>" required placeholder="e.g., Rent Payment, Salary">
+            </div>
+
+            <div class="form-group">
+                <label>Transaction Type:</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="type-expense" name="type" value="expense" <%= recurringTransaction.type === 'expense' ? 'checked' : '' %>>
+                        <label for="type-expense">Expense</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="type-income" name="type" value="income" <%= recurringTransaction.type === 'income' ? 'checked' : '' %>>
+                        <label for="type-income">Income</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <div class="input-with-icon">
+                    <input type="number" value="<%= recurringTransaction.amount || '' %>" id="amount" name="amount" min="0.01" step="0.01" required placeholder="0.00">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="sourceOfCategory">Category:</label>
+                <select id="sourceOfCategory" name="sourceOfCategory" required>
+                    <option value="">Select a category</option>
+                    <% const categories = ["Housing", "Transportation", "Food", "Utilities", "Insurance", "Healthcare", "Savings", "Personal", "Entertainment", "Education", "Debt", "Salary", "Investments", "Gifts", "Other"]; %>
+                    <% categories.forEach(cat => { %>
+                        <option value="<%= cat %>" <%= recurringTransaction.sourceOfCategory === cat ? 'selected' : '' %>><%= cat %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="frequency">Frequency:</label>
+                <select id="frequency" name="frequency" required>
+                    <% const frequencies = ["daily", "weekly", "biweekly", "monthly", "quarterly", "yearly"]; %>
+                    <% frequencies.forEach(freq => { %>
+                        <option value="<%= freq %>" <%= recurringTransaction.frequency === freq ? 'selected' : '' %>><%= freq.charAt(0).toUpperCase() + freq.slice(1) %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" value="<%= recurringTransaction.startDate ? recurringTransaction.startDate.toISOString().split('T')[0] : '' %>" id="startDate" name="startDate" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="endDate">End Date (Optional):</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                    <input type="date" id="endDate" name="endDate" value="<%= recurringTransaction.endDate ? recurringTransaction.endDate.toISOString().split('T')[0] : '' %>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description (Optional):</label>
+                <textarea id="description" name="description" rows="3" placeholder="Add details about this recurring transaction"><%= recurringTransaction.description || '' %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="isActive" <%= recurringTransaction.isActive ? 'checked' : '' %>>
+                    Active
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <a href="/recurring" class="btn btn-outline cancel-btn">Cancel</a>
+                <button type="submit" class="btn btn-primary submit-btn">
+                    <%= recurringTransaction && recurringTransaction._id ? "Update Recurring Transaction" : "Create Recurring Transaction" %>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

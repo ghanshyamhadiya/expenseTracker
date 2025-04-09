@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* === DARK MODE ENHANCEMENTS === */
+html[data-theme="dark"] {
+    --bg-main: #0d1b2a;
+    --bg-secondary: #1b263b;
+    --bg-card: #243447;
+    --text-primary: #e0e6ed;
+    --text-secondary: #9aa5b1;
+    --accent: #00b4d8;
+    --accent-hover: #0077b6;
+    --input-bg: #2e3b4e;
+    --border-color: #3c4f65;
+    --btn-glow: 0 0 10px rgba(0, 180, 216, 0.5);
+    --modal-bg: rgba(13, 27, 42, 0.95);
+  }
+  
+  html[data-theme="dark"] body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+  }
+  
+  /* Card style */
+  html[data-theme="dark"] .card {
+    background-color: var(--bg-card);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+  }
+  
+  /* Headings & subtitles */
+  html[data-theme="dark"] h1,
+  html[data-theme="dark"] h2,
+  html[data-theme="dark"] h3 {
+    color: var(--text-primary);
+  }
+  
+  html[data-theme="dark"] .subtitle {
+    color: var(--text-secondary);
+  }
+  
+  /* Form styles */
+  html[data-theme="dark"] .form-group label {
+    color: var(--text-primary);
+  }
+  
+  html[data-theme="dark"] input,
+  html[data-theme="dark"] select,
+  html[data-theme="dark"] textarea {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+  }
+  
+  html[data-theme="dark"] input::placeholder,
+  html[data-theme="dark"] select::placeholder {
+    color: var(--text-secondary);
+  }
+  
+  /* Buttons */
+  html[data-theme="dark"] .btn-primary {
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    transition: 0.3s ease;
+    box-shadow: var(--btn-glow);
+  }
+  
+  html[data-theme="dark"] .btn-primary:hover {
+    background-color: var(--accent-hover);
+    box-shadow: 0 0 15px rgba(0, 180, 216, 0.6);
+  }
+  
+  html[data-theme="dark"] .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+  
+  html[data-theme="dark"] .btn-outline:hover {
+    background-color: var(--accent);
+    color: #fff;
+  }
+  
+  /* Modal */
+  html[data-theme="dark"] .modal {
+    background-color: var(--modal-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+  }
+  
+  html[data-theme="dark"] .modal-content {
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
+  }
+  
+  /* SVG and icons */
+  html[data-theme="dark"] svg,
+  html[data-theme="dark"] i {
+    color: var(--text-primary);
+    fill: currentColor;
+  }
+  
+  /* Action links */
+  html[data-theme="dark"] .action-links a {
+    color: var(--accent);
+  }
+  
+  /* Optional scrollbars */
+  html[data-theme="dark"] ::-webkit-scrollbar {
+    width: 8px;
+  }
+  html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+  }
+  

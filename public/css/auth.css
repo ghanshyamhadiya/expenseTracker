@@ -1,0 +1,331 @@
+
+.unique-signup-wrapper {
+  padding: 2rem 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.signup-title-gradient {
+  text-align: center;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1.5rem !important;
+}
+
+.signup-container-shadow {
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.input-group-float {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.floating-label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: #000 !important;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background-color: white;
+  width: 72px;
+  text-align: center;
+  font-weight: 450;
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+.glow-mail {
+  width: 50px !important;
+}
+
+.glow-pass {
+  width: 75px !important;
+}
+
+.input-glow:focus + .floating-label,
+.input-glow:not(:placeholder-shown) + .floating-label {
+  top: 0;
+  left: 0.75rem;
+  font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+  color: #555;
+}
+
+.input-glow {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  color: #333;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+  font-weight: 550;
+}
+
+.input-glow:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.valid-feedback {
+  color: #28a745 !important;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  margin-top: 0.25rem;
+}
+
+.strength-container {
+  margin-bottom: 1rem;
+  text-align: left;
+  padding-left: 1rem;
+  font-family: "Ubuntu", serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+#strength.weak {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+#strength.medium {
+  color: #ffa500;
+  font-weight: bold;
+}
+
+#strength.strong {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.signup_reco {
+  text-align: center;
+  margin: 15px 0;
+  padding: 10px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.signup_reco p {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(12px, 1.8vw, 14px);
+  color: #555;
+  font-weight: 500;
+}
+
+.signup_reco a {
+  text-decoration: none;
+  color: #2196F3;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.signup_reco a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #2196F3;
+  bottom: -4px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.signup_reco a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.signup_reco a:hover {
+  color: #1976D2;
+}
+
+.signup_reco:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.custom-btn-blue {
+  border-radius: 25px;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(45deg, #007bff, #00b4ff);
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
+.custom-btn-blue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+
+.listuser {
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.listuser::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #2196F3;
+  bottom: -4px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.listuser:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.listuser:hover {
+  color: #2196F3;
+}
+
+
+.password-toggle-container {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.7;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.password-toggle-container:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.password-toggle-container:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.eye-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.eye-open {
+  transform: scale(1) translateX(0);
+  opacity: 1;
+}
+
+.eye-closed {
+  transform: scale(0.8) translateX(10px);
+  opacity: 0;
+}
+
+@keyframes eye-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.input-group-float:focus-within .password-toggle-container {
+  animation: eye-bounce 0.4s ease;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .unique-signup-wrapper {
+      padding: 1rem 0.5rem;
+  }
+
+  .signup-title-gradient {
+      margin-bottom: 1rem !important;
+  }
+
+  .signup-container-shadow {
+      padding: 1rem;
+      margin: 0 1rem;
+  }
+
+  .input-group-float {
+      margin-bottom: 1rem;
+  }
+
+  .floating-label {
+      left: 0.75rem;
+  }
+
+  .input-glow:focus+.floating-label,
+  .input-glow:not(:placeholder-shown)+.floating-label {
+      left: 0.5rem;
+  }
+
+  .password-toggle-container {
+      right: 10px;
+      padding: 3px;
+  }
+
+  .eye-icon {
+      width: 20px;
+      height: 20px;
+  }
+
+  .signup_reco {
+      margin: 10px 0;
+      padding: 8px;
+  }
+
+  .custom-btn-blue {
+      max-width: 100%;
+  }
+}
+.password-toggle-btn {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #888;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* .password-toggle-btn:hover {
+  color: #9333ea; /* Accent hover color */
+  transform: scale(1.1);
+} */

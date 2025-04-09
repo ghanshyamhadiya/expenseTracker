@@ -1,0 +1,37 @@
+<% layout("./layout/boilerplate") %>
+<link rel="stylesheet" href="/css/auth.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="login-wrapper">
+    <h1 class="signup-title-gradient">login</h1>
+    <div class="signup-container-shadow">
+        <form action="/login" method="POST" class="custom-signup-form" novalidate>
+            <div class="input-group-float">
+                <input type="text" name="username" id="username"
+                       class="input-glow"
+                       placeholder=" "
+                       required />
+                <label for="username" class="floating-label">username</label>
+            </div>
+
+            <div class="input-group-float position-relative">
+                <input type="password" name="password" id="password"
+                       class="input-glow"
+                       placeholder=" "
+                       required />
+                <label for="password" class="floating-label glow-pass">password</label>
+                <button type="button" class="password-toggle-btn" aria-label="Show password">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+
+            <div class="signup_reco">
+                <p>Don't have account? <a href="/signup">Sign Up</a></p>
+            </div>
+
+            <button type="submit" class="custom-btn-blue">Login</button>
+        </form>
+    </div>
+</div>
+
+<script src="/js/passwordToggle.js"></script>

@@ -1,0 +1,74 @@
+<% layout("./layout/boilerplate") %>
+<link rel="stylesheet" href="/css/savingNew.css">
+
+<div class="page-container">
+    <h2 class="form-title">
+      <i class="fas fa-piggy-bank icon"></i> Create Savings Goal
+    </h2>
+  <div class="form-card">
+
+    <form action="/savings" method="POST" class="form-body">
+      <div class="form-group">
+        <label for="title">Goal Title</label>
+        <input type="text" id="title" name="title" required placeholder="e.g., Vacation, Emergency Fund" />
+      </div>
+
+      <div class="form-group">
+        <label for="targetAmount">Target Amount</label>
+        <input type="number" id="targetAmount" name="targetAmount" min="1" step="0.01" required placeholder="5000.00" />
+      </div>
+
+      <div class="form-group">
+        <label for="currentAmount">Current Amount</label>
+        <input type="number" id="currentAmount" name="currentAmount" min="0" step="0.01" placeholder="0.00" />
+      </div>
+
+      <div class="form-group">
+        <label for="deadline">Target Date</label>
+        <div class="input-icon-wrapper">
+          <input type="date" id="deadline" name="deadline" required />
+          <i class="fas fa-calendar-alt calendar-icon"></i>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="Savings">Savings</option>
+          <option value="Investment">Investment</option>
+          <option value="Emergency Fund">Emergency Fund</option>
+          <option value="Vacation">Vacation</option>
+          <option value="Education">Education</option>
+          <option value="Home">Home</option>
+          <option value="Vehicle">Vehicle</option>
+          <option value="Retirement">Retirement</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description (optional)</label>
+        <textarea id="description" name="description" rows="3" placeholder="Add details about your savings goal"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <a href="/savings" class="cancel-btn">Cancel</a>
+        <button type="submit" class="submit-btn">Create Goal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const deadlineInput = document.getElementById('deadline');
+    if (deadlineInput) {
+      const today = new Date();
+      const threeMonthsLater = new Date();
+      threeMonthsLater.setMonth(today.getMonth() + 3);
+      const formattedDate = threeMonthsLater.toISOString().split('T')[0];
+      deadlineInput.value = formattedDate;
+      deadlineInput.min = new Date().toISOString().split('T')[0];
+    }
+  });
+</script>
